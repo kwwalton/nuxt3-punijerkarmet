@@ -1,0 +1,35 @@
+.button__outline {
+  text-decoration: none;
+  border-radius: $border-radius-pill;
+  padding: rem(8) rem(24);
+  font-size: rem($font-size-base);
+  font-weight: $font-weight-bold;
+  color: $casal;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid $casal;
+
+  &:hover {
+    color: $shark;
+    //background-color: $white;
+    border: 1px solid $shark;
+    box-shadow: 0 1px 2px 0 rgb(64 60 67 / 30%);
+  }
+}
+
+.button__filled {
+  text-decoration: none;
+  border-radius: $border-radius-pill;
+  padding: rem(8) rem(24);
+  font-size: rem($font-size-base);
+  font-weight: $font-weight-bold;
+  color: $white;
+  background-color: $casal;
+  border: 1px solid $casal;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $shark;
+    border: 1px solid $shark;
+    box-shadow: 0 1px 2px 0 rgb(64 60 67 / 30%);
+  }
+}
