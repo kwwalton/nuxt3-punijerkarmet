@@ -1,5 +1,8 @@
 <template>
   <div class="header-search-overlay">
+    <button class="close-this-thing" @click="handleClose">
+      close this thing
+    </button>
     <div class="container">
       <div>
         <h3>featured</h3>
@@ -26,12 +29,19 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit = defineEmits(['close'])
+
+const handleClose = () => {
+  console.log('close this up')
+  emit('close')
+}
+</script>
 
 <style lang="scss" scoped>
 .header-search-overlay {
   position: absolute;
-  top: 100%;
+  top: calc(100% - 1px);
   width: 100%;
   background-color: $white;
   border-top: 1px solid $mercury;
@@ -74,6 +84,10 @@
         background-color: $athens-gray;
       }
     }
+  }
+  .close-this-thing {
+    position: absolute;
+    right: 20px;
   }
 }
 </style>

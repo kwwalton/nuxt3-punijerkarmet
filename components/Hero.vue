@@ -2,8 +2,8 @@
   <div class="hero">
     <div class="container">
       <div class="left">
-        <h2>now open for business</h2>
-        <p>
+        <h2 class="large">now open for business</h2>
+        <p class="large">
           Find best-selling products from trusted brands and discover something
           new. Anytime. Everywhere.
         </p>
@@ -13,11 +13,11 @@
         <div class="homepage-hero-graphic-wrapper">
           <div
             class="homepage-hero-graphic homepage-hero-graphic-1"
-            style="background-image: url('/images/product-berry1.jpg')"
+            style="background-image: url('/images/growers-favorite-sq.jpg')"
           ></div>
           <div
             class="homepage-hero-graphic homepage-hero-graphic-2"
-            style="background-image: url('/images/product-berry2d.jpg')"
+            style="background-image: url('/images/new-og-sq.jpg')"
           ></div>
           <svg
             version="1.1"
@@ -64,15 +64,7 @@
       flex: 1;
 
       h2 {
-        font-size: rem(40);
-        font-weight: $font-weight-bold;
         color: $casal;
-        margin-bottom: rem(10);
-      }
-
-      p {
-        font-size: rem(24);
-        line-height: 140%;
       }
 
       button {

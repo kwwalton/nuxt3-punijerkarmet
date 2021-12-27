@@ -10,6 +10,12 @@
   </button>
 </template>
 
+<script lang="ts">
+// Solves "Cannot Redeclare Block Scoped Variable Name" with emit, TS looking for export object
+import { defineComponent } from 'vue'
+export default defineComponent({ name: 'ButtonMobileMenu' })
+</script>
+
 <script setup lang="ts">
 const isMenuOpen = ref(false)
 const emit = defineEmits(['toggle-menu'])

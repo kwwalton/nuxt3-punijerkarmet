@@ -1,0 +1,44 @@
+<template>
+  <ul class="nuxt-link-list">
+    <li v-for="(item, index) in list" :key="index">
+      <nuxt-link :to="item.url">{{ item.name }}</nuxt-link>
+    </li>
+  </ul>
+</template>
+
+<script setup lang="ts">
+const props = defineProps({
+  list: {
+    type: Array,
+    default: () => ['nothing']
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+ul.nuxt-link-list {
+  display: block;
+  //   column-count: 6;
+  //   column-gap: 40px;
+
+  li {
+    margin: 10px 0 10px -10px;
+  }
+
+  a {
+    display: block;
+    letter-spacing: 0.5px;
+    color: $ship-gray;
+    text-decoration: none;
+    font-weight: $font-weight-normal;
+    padding: 6px 10px;
+    border-radius: $border-radius-pill;
+    border: none;
+
+    &:hover {
+      color: $shark;
+      background-color: $athens-gray;
+    }
+  }
+}
+</style>
