@@ -1,5 +1,5 @@
 <template>
-  <nav class="navigation">
+  <nav class="navigation" @click.passive="handleClick">
     <ul class="container">
       <li @mouseover="isShowing = true" @mouseout="isShowing = false">
         <nuxt-link to="/vegetables">vegetables</nuxt-link>
@@ -26,6 +26,14 @@ import vegetablesList from '~/constants/vegetables-list'
 const vegetables = reactive(vegetablesList)
 const isShowing = ref(false)
 const temp = true
+
+const emit = defineEmits(['navigated'])
+const handleClick = () => {
+  emit('navigated', true)
+  // TODO: problem is what if we click something that is not a link or in naviagation, like the logo link
+  // and tell the menu mobile button to close
+  // maybe a case for the new useState hook
+}
 </script>
 
 <style lang="scss" scoped>
@@ -33,12 +41,15 @@ const temp = true
   display: none;
 
   &.menu-toggled {
-    display: block;
-    position: absolute;
-    background-color: $white;
-    width: 100%;
-    top: 100%;
-    padding-bottom: 15px;
+    // TODO: handle max widths in media queries
+    @media screen and (max-width: 991px) {
+      display: block;
+      position: absolute;
+      background-color: $white;
+      width: 100%;
+      top: 100%;
+      padding-bottom: 15px;
+    }
   }
 
   @include breakpoint('lg') {
@@ -46,7 +57,6 @@ const temp = true
     justify-content: center;
     padding-top: rem(6);
     padding-bottom: rem(12);
-    //border-bottom: 1px solid $westar;
     margin-top: rem(30);
   }
 
@@ -60,13 +70,23 @@ const temp = true
       padding: 0;
     }
 
+    li {
+      padding: 10px 0;
+      @include breakpoint('lg') {
+        padding: 0;
+      }
+    }
+
     a {
       text-decoration: none;
       color: $shark;
       font-size: rem($font-size-base);
       font-weight: $font-weight-bold;
-      padding: 0 0 rem(6) 0;
-      margin: 0;
+
+      @include breakpoint('lg') {
+        padding: 0 0 rem(6) 0;
+        margin: 0;
+      }
 
       &.sale {
         color: $crimson;

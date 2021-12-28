@@ -7,19 +7,18 @@
         <ButtonMobileMenu @toggle-menu="toggleMenu" />
       </div>
       <!-- Visible desktop, but should also be shown with menu is toggled on at mobile -->
-      <div class="header-content__desktop">
+      <div
+        class="header-content__desktop"
+        :class="{ 'menu-toggled': isMenuOpen }"
+      >
         <HeaderSearch @focus="handleFocus" />
-        <div class="user-info">
-          <nuxt-link to="/" class="user-info-link button__outline">
-            sign in
-          </nuxt-link>
-          <nuxt-link to="/" class="user-info-link button__filled">
-            sign up
-          </nuxt-link>
-        </div>
+        <HeaderUserInfo />
       </div>
     </div>
-    <Navigation :class="{ 'menu-toggled': isMenuOpen }" />
+    <Navigation
+      :class="{ 'menu-toggled': isMenuOpen }"
+      @navigated="toggleMenu"
+    />
     <HeaderSearchOverlay
       v-show="isOkToShowOverlay"
       :is-visible="isOkToShowOverlay"
@@ -41,7 +40,6 @@ const handleClickOutside = () => {
 // navigation
 const isMenuOpen = ref(false)
 const toggleMenu = (event: boolean) => {
-  console.log('toggle menu', event)
   isMenuOpen.value = !isMenuOpen.value
 }
 </script>
@@ -63,6 +61,12 @@ header {
   .container {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+
+    @include breakpoint('lg') {
+      flex-direction: row;
+      align-items: center;
+    }
 
     .header-content__mobile-and-desktop {
       display: flex;
@@ -80,12 +84,15 @@ header {
         flex: 3;
         padding-left: rem(30);
       }
-    }
-  }
 
-  .desktop-hidden {
-    @include breakpoint('lg') {
-      display: none;
+      // need a way to show when menu is toggled on at mobile
+      &.menu-toggled {
+        display: block;
+
+        @include breakpoint('lg') {
+          display: flex;
+        }
+      }
     }
   }
 
@@ -97,16 +104,6 @@ header {
     &:hover {
       text-decoration: underline;
       color: $casal;
-    }
-  }
-
-  .user-info {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    .user-info-link:first-child {
-      margin-right: rem(20);
     }
   }
 }

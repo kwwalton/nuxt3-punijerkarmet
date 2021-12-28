@@ -37,13 +37,21 @@ const handleFocus = () => {
 
 <style lang="scss" scoped>
 .header-search {
+  margin-top: 15px;
+  @include breakpoint('lg') {
+    margin-top: 0;
+  }
   input[type='search'] {
     padding: rem(16) rem(20) rem(16) rem(40);
     background-color: transparent;
     border-radius: $border-radius-pill;
     border: 1px solid $mercury;
-    width: rem(400);
+    width: 100%;
     box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+
+    @include breakpoint('lg') {
+      width: rem(400);
+    }
 
     &:hover {
       box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);

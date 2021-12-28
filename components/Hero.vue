@@ -78,7 +78,7 @@
     .right {
       flex: 1;
 
-      // copied and pasted
+      // copied and pasted, Aaron created this
       .homepage-hero-graphic-wrapper {
         transform: scale(0.8);
         margin-top: -70px;
