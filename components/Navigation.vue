@@ -2,7 +2,7 @@
   <nav class="navigation">
     <ul class="container">
       <li @mouseover="isShowing = true" @mouseout="isShowing = false">
-        <nuxt-link to="#">vegetables</nuxt-link>
+        <nuxt-link to="/vegetables">vegetables</nuxt-link>
         <div class="subcategories" v-show="isShowing">
           <div class="container">
             <h3>vegetables</h3>
@@ -10,7 +10,7 @@
           </div>
         </div>
       </li>
-      <li><nuxt-link to="#">fruits</nuxt-link></li>
+      <li><nuxt-link to="/fruits">fruits</nuxt-link></li>
       <li><nuxt-link to="#">flowers</nuxt-link></li>
       <li><nuxt-link to="#">herbs</nuxt-link></li>
       <li><nuxt-link to="#">farm seed</nuxt-link></li>
@@ -30,12 +30,23 @@ const temp = true
 
 <style lang="scss" scoped>
 .navigation {
+  display: none;
+
+  &.menu-toggled {
+    display: block;
+    position: absolute;
+    background-color: $white;
+    width: 100%;
+    top: 100%;
+    padding-bottom: 15px;
+  }
+
   @include breakpoint('lg') {
     display: flex;
     justify-content: center;
     padding-top: rem(6);
     padding-bottom: rem(12);
-    border-bottom: 1px solid $westar;
+    //border-bottom: 1px solid $westar;
     margin-top: rem(30);
   }
 
@@ -72,6 +83,7 @@ const temp = true
       }
     }
   }
+
   .subcategories {
     position: absolute;
     top: calc(100% - 1px);

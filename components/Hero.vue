@@ -51,8 +51,12 @@
 .hero {
   background-color: $athens-gray;
   padding: 20px 0;
-  height: 360px;
+
   overflow: hidden;
+
+  @include breakpoint('lg') {
+    height: 360px;
+  }
 
   .container {
     display: flex;

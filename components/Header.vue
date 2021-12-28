@@ -6,7 +6,7 @@
         <nuxt-link to="/" class="logo-link"><Logo /></nuxt-link>
         <ButtonMobileMenu @toggle-menu="toggleMenu" />
       </div>
-      <!-- Visible desktop -->
+      <!-- Visible desktop, but should also be shown with menu is toggled on at mobile -->
       <div class="header-content__desktop">
         <HeaderSearch @focus="handleFocus" />
         <div class="user-info">
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <Navigation />
+    <Navigation :class="{ 'menu-toggled': isMenuOpen }" />
     <HeaderSearchOverlay
       v-show="isOkToShowOverlay"
       :is-visible="isOkToShowOverlay"
@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+// search overlay
 const isOkToShowOverlay = ref(false)
 const handleFocus = () => (isOkToShowOverlay.value = true)
 const handleClickOutside = () => {
@@ -37,6 +38,7 @@ const handleClickOutside = () => {
     isOkToShowOverlay.value = false
   }
 }
+// navigation
 const isMenuOpen = ref(false)
 const toggleMenu = (event: boolean) => {
   console.log('toggle menu', event)
@@ -49,8 +51,9 @@ header {
   position: sticky;
   top: 0;
   background-color: $white;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  border-bottom: 1px solid $westar;
+  padding-top: 20px;
+  padding-bottom: 20px;
   z-index: 4;
 
   @include breakpoint('lg') {
