@@ -7,14 +7,18 @@ $breakpoints: (
   xl: 1200px
 );
 
-@mixin breakpoint($breakpoint) {
+@mixin breakpoint($breakpoint, $range: 'min') {
   @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
-      @content;
+    @if $range == 'min' {
+      @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else {
+      @media (max-width: #{map-get($breakpoints, $breakpoint) - 1}) {
+        @content;
+      }
     }
   } @else {
     @warn "Breakpoint: $breakpoint is not defined.";
   }
 }
-
-// TODO: find a way to have min or max widths

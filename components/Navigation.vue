@@ -41,8 +41,7 @@ const handleClick = () => {
   display: none;
 
   &.menu-toggled {
-    // TODO: handle max widths in media queries
-    @media screen and (max-width: 991px) {
+    @include breakpoint('lg', 'max') {
       display: block;
       position: absolute;
       background-color: $white;
