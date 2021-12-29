@@ -17,11 +17,15 @@ export default defineComponent({ name: 'ButtonMobileMenu' })
 </script>
 
 <script setup lang="ts">
-const isMenuOpen = ref(false)
+const props = defineProps({
+  isMenuOpen: {
+    type: Boolean,
+    default: () => false
+  }
+})
 const emit = defineEmits(['toggle-menu'])
 const handleClick = () => {
-  isMenuOpen.value = !isMenuOpen.value
-  emit('toggle-menu', isMenuOpen.value)
+  emit('toggle-menu', !props.isMenuOpen)
 }
 </script>
 

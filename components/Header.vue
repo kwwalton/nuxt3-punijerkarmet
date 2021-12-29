@@ -3,10 +3,15 @@
     <div class="header-content container">
       <!-- Visible mobile and desktop -->
       <div class="header-content__mobile-and-desktop">
-        <nuxt-link to="/" class="logo-link"><Logo /></nuxt-link>
-        <ButtonMobileMenu @toggle-menu="toggleMenu" />
+        <nuxt-link to="/" class="logo-link" @click.passive="handleClickOutside">
+          <Logo />
+        </nuxt-link>
+        <ButtonMobileMenu
+          @toggle-menu="toggleMenu"
+          :is-menu-open="isMenuOpen"
+        />
       </div>
-      <!-- Visible desktop, but should also be shown with menu is toggled on at mobile -->
+      <!-- Visible desktop, mobile when menu is open -->
       <div
         class="header-content__desktop"
         :class="{ 'menu-toggled': isMenuOpen }"
@@ -33,9 +38,12 @@ import { ref } from 'vue'
 const isOkToShowOverlay = ref(false)
 const handleFocus = () => (isOkToShowOverlay.value = true)
 const handleClickOutside = () => {
+  // search overlay
   if (isOkToShowOverlay.value) {
     isOkToShowOverlay.value = false
   }
+  // navigation
+  if (isMenuOpen.value) toggleMenu(false)
 }
 // navigation
 const isMenuOpen = ref(false)
