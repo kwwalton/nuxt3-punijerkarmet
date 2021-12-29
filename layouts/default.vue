@@ -36,5 +36,6 @@ useHead({
   // so we can push the footer down
   $headerAndNavigationHeight: 110px;
   min-height: calc(100vh - $headerAndNavigationHeight);
+  backface-visibility: hidden;
 }
 </style>

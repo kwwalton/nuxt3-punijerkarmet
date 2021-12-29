@@ -63,9 +63,15 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    flex-direction: column;
+
+    @include breakpoint('lg') {
+      flex-direction: row;
+    }
 
     .left {
       flex: 1;
+      z-index: 1;
 
       h2 {
         color: $casal;

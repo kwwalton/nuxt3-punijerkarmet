@@ -8,7 +8,7 @@ h1,
 .h1 {
   font-size: rem(40);
   font-weight: $font-weight-bold;
-  line-height: 140%;
+  line-height: 120%;
   margin-bottom: rem(8);
   &.large {
     font-size: rem(48);
@@ -19,7 +19,7 @@ h2,
 .h2 {
   font-size: rem(34);
   font-weight: $font-weight-bold;
-  line-height: 140%;
+  line-height: 120%;
   margin-bottom: rem(8);
   &.large {
     font-size: rem(40);
@@ -30,7 +30,7 @@ h3,
 .h3 {
   font-size: rem(30);
   font-weight: $font-weight-bold;
-  line-height: 140%;
+  line-height: 120%;
   margin-bottom: rem(8);
   &.large {
     font-size: rem(34);
@@ -41,7 +41,7 @@ h4,
 .h4 {
   font-size: rem(24);
   font-weight: $font-weight-bold;
-  line-height: 140%;
+  line-height: 120%;
   margin-bottom: rem(8);
 }
 
@@ -49,7 +49,7 @@ h5,
 .h5 {
   font-size: rem(20);
   font-weight: $font-weight-bold;
-  line-height: 140%;
+  line-height: 130%;
   margin-bottom: rem(8);
 }
 
