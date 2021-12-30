@@ -1,64 +1,49 @@
 <template>
   <nav class="navigation" @click.passive="handleClick">
     <ul class="container">
-      <!--Vegetables -->
       <li
-        @mouseover="subCategories.vegetablesVisible = true"
-        @mouseout="subCategories.vegetablesVisible = false"
+        v-for="(category, index) in categoriesList"
+        :key="index"
+        @mouseover="categoryVisibility[category.referenceName] = true"
+        @mouseout="categoryVisibility[category.referenceName] = false"
       >
-        <nuxt-link to="/vegetables">vegetables</nuxt-link>
-        <div class="subcategories" v-show="subCategories.vegetablesVisible">
+        <nuxt-link :to="category.url">{{ category.name }}</nuxt-link>
+        <div
+          v-if="category.subcategories.length"
+          class="subcategories"
+          v-show="categoryVisibility[category.referenceName]"
+        >
           <div class="container">
-            <h3>vegetables</h3>
-            <NuxtLinkList :list="vegetables" />
+            <h3>{{ category.name }}</h3>
+            <NuxtLinkList :list="category.subcategories" />
           </div>
         </div>
       </li>
-      <!-- Fruits -->
-      <li
-        @mouseover="subCategories.fruitsVisible = true"
-        @mouseout="subCategories.fruitsVisible = false"
-      >
-        <nuxt-link to="/fruits">fruits</nuxt-link>
-        <div class="subcategories" v-show="subCategories.fruitsVisible">
-          <div class="container">
-            <h3>fruits</h3>
-            <NuxtLinkList :list="fruits" />
-          </div>
-        </div>
-      </li>
-      <li><nuxt-link to="#">flowers</nuxt-link></li>
-      <li><nuxt-link to="#">herbs</nuxt-link></li>
-      <li><nuxt-link to="#">farm seed</nuxt-link></li>
-      <li><nuxt-link to="#">tools &amp; supplies</nuxt-link></li>
-      <li><nuxt-link to="#">featured</nuxt-link></li>
-      <li><nuxt-link to="#" class="sale">sale</nuxt-link></li>
     </ul>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { vegetablesList, fruitsList } from '~~/constants/mega-menu-lists'
-const vegetables = reactive(vegetablesList)
-const fruits = reactive(fruitsList)
+import categoriesList from '~/constants/mega-menu-lists'
 
-const subCategories = reactive({
-  vegetablesVisible: false,
-  fruitsVisible: false,
-  flowersVisible: false,
-  herbsVisible: false,
-  farmSeedVisible: false,
-  toolsAndSuppliesVisible: false,
-  featuredVisible: false,
-  saleVisible: false
+const categories = reactive(categoriesList)
+const categoryVisibility = reactive({
+  vegetables: false,
+  fruits: false,
+  flowers: false,
+  herbs: false,
+  farmSeed: false,
+  toolsAndSupplies: false,
+  featured: false,
+  sale: false
 })
 
 const emit = defineEmits(['navigated'])
 const handleClick = () => {
   emit('navigated', true)
   // close up any mega menus
-  Object.keys(subCategories).forEach((key) => {
-    subCategories[key] = false
+  Object.keys(categoryVisibility).forEach((key) => {
+    categoryVisibility[key] = false
   })
 }
 </script>
