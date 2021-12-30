@@ -1,16 +1,32 @@
 <template>
   <nav class="navigation" @click.passive="handleClick">
     <ul class="container">
-      <li @mouseover="isShowing = true" @mouseout="isShowing = false">
+      <!--Vegetables -->
+      <li
+        @mouseover="subCategories.vegetablesVisible = true"
+        @mouseout="subCategories.vegetablesVisible = false"
+      >
         <nuxt-link to="/vegetables">vegetables</nuxt-link>
-        <div class="subcategories" v-show="isShowing">
+        <div class="subcategories" v-show="subCategories.vegetablesVisible">
           <div class="container">
             <h3>vegetables</h3>
             <NuxtLinkList :list="vegetables" />
           </div>
         </div>
       </li>
-      <li><nuxt-link to="/fruits">fruits</nuxt-link></li>
+      <!-- Fruits -->
+      <li
+        @mouseover="subCategories.fruitsVisible = true"
+        @mouseout="subCategories.fruitsVisible = false"
+      >
+        <nuxt-link to="/fruits">fruits</nuxt-link>
+        <div class="subcategories" v-show="subCategories.fruitsVisible">
+          <div class="container">
+            <h3>fruits</h3>
+            <NuxtLinkList :list="fruits" />
+          </div>
+        </div>
+      </li>
       <li><nuxt-link to="#">flowers</nuxt-link></li>
       <li><nuxt-link to="#">herbs</nuxt-link></li>
       <li><nuxt-link to="#">farm seed</nuxt-link></li>
@@ -22,17 +38,28 @@
 </template>
 
 <script setup lang="ts">
-import vegetablesList from '~/constants/vegetables-list'
+import { vegetablesList, fruitsList } from '~~/constants/mega-menu-lists'
 const vegetables = reactive(vegetablesList)
-const isShowing = ref(false)
-const temp = true
+const fruits = reactive(fruitsList)
+
+const subCategories = reactive({
+  vegetablesVisible: false,
+  fruitsVisible: false,
+  flowersVisible: false,
+  herbsVisible: false,
+  farmSeedVisible: false,
+  toolsAndSuppliesVisible: false,
+  featuredVisible: false,
+  saleVisible: false
+})
 
 const emit = defineEmits(['navigated'])
 const handleClick = () => {
   emit('navigated', true)
-  // TODO: problem is what if we click something that is not a link or in naviagation, like the logo link
-  // and tell the menu mobile button to close
-  // maybe a case for the new useState hook
+  // close up any mega menus
+  Object.keys(subCategories).forEach((key) => {
+    subCategories[key] = false
+  })
 }
 </script>
 
@@ -124,8 +151,12 @@ const handleClick = () => {
   }
   ::v-deep(ul.nuxt-link-list) {
     display: block;
-    column-count: 6;
+    column-count: 4;
     column-gap: 40px;
+
+    @include breakpoint('xl') {
+      column-count: 6;
+    }
   }
 }
 </style>

@@ -23,6 +23,8 @@ ul.nuxt-link-list {
 
   li {
     margin: 10px 0 10px -10px;
+    display: inline-block;
+    width: 100%;
   }
 
   a {
