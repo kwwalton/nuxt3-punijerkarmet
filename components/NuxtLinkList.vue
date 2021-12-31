@@ -22,7 +22,7 @@ ul.nuxt-link-list {
   //   column-gap: 40px;
 
   li {
-    margin: 10px 0 10px -10px;
+    margin: 0 0 10px -10px;
     display: inline-block;
     width: 100%;
   }
@@ -33,6 +33,7 @@ ul.nuxt-link-list {
     color: $ship-gray;
     text-decoration: none;
     font-weight: $font-weight-normal;
+    line-height: 120%;
     padding: 6px 10px;
     border-radius: $border-radius-pill;
     border: none;

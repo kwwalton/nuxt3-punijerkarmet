@@ -34,8 +34,8 @@ useHead({
 .main-content {
   // TODO: figure out the height for each breakpoint
   // so we can push the footer down
-  $headerAndNavigationHeight: 110px;
-  min-height: calc(100vh - $headerAndNavigationHeight);
+  $headerAndFooterHeights: 320px;
+  min-height: calc(100vh - $headerAndFooterHeights);
   backface-visibility: hidden;
 }
 </style>
