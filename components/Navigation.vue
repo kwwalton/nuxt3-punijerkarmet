@@ -7,7 +7,12 @@
         @mouseover="categoryVisibility[category.referenceName] = true"
         @mouseout="categoryVisibility[category.referenceName] = false"
       >
-        <nuxt-link :to="category.url">{{ category.name }}</nuxt-link>
+        <nuxt-link
+          :to="category.url"
+          :class="{ sale: category.referenceName === 'sale' }"
+        >
+          {{ category.name }}
+        </nuxt-link>
         <div
           v-if="category.subcategories.length"
           class="subcategories"

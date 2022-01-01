@@ -4,23 +4,11 @@
       <div class="container">
         <div>
           <h6>customer support</h6>
-          <ul class="footer-upper__vertical-list">
-            <li><nuxt-link to="#">contact us</nuxt-link></li>
-            <li><nuxt-link to="#">satisfaction guarantee</nuxt-link></li>
-            <li><nuxt-link to="#">shipping</nuxt-link></li>
-            <li><nuxt-link to="#">returns &amp; refunds</nuxt-link></li>
-            <li><nuxt-link to="#">FAQ</nuxt-link></li>
-          </ul>
+          <NuxtLinkList :list="customerSupportMenu" />
         </div>
         <div>
           <h6>grower's library</h6>
-          <ul class="footer-upper__vertical-list">
-            <li><nuxt-link to="#">contact us</nuxt-link></li>
-            <li><nuxt-link to="#">satisfaction guarantee</nuxt-link></li>
-            <li><nuxt-link to="#">shipping</nuxt-link></li>
-            <li><nuxt-link to="#">returns &amp; refunds</nuxt-link></li>
-            <li><nuxt-link to="#">FAQ</nuxt-link></li>
-          </ul>
+          <NuxtLinkList :list="growersLibraryMenu" />
         </div>
         <div>
           <nuxt-link to="/" class="logo-link">
@@ -46,7 +34,53 @@
   </footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const customerSupportMenu = reactive([
+  {
+    name: 'contact us',
+    url: '/contact-us'
+  },
+  {
+    name: 'satisfaction guarantee',
+    url: '/satisfaction-guarantee'
+  },
+  {
+    name: 'shipping',
+    url: '/shipping'
+  },
+  {
+    name: 'returns and refunds',
+    url: '/returns-refunds'
+  },
+  {
+    name: 'FAQ',
+    url: '/faq'
+  }
+])
+
+const growersLibraryMenu = reactive([
+  {
+    name: 'vegetable growing resources',
+    url: '/vegeteable-growing-resources'
+  },
+  {
+    name: 'instructional videos',
+    url: '/instructional-videos'
+  },
+  {
+    name: 'planning tools and calculators',
+    url: '/planning-tools-and-calculators'
+  },
+  {
+    name: 'hardiness zones',
+    url: '/hardiness-zones'
+  },
+  {
+    name: 'ask a grower',
+    url: '/ask-a-grower'
+  }
+])
+</script>
 
 <style lang="scss" scoped>
 footer {
@@ -72,7 +106,7 @@ footer {
         flex: 1;
 
         &:last-child {
-          flex: 2;
+          flex: 1;
           display: flex;
 
           @include breakpoint('lg') {
@@ -88,8 +122,12 @@ footer {
     color: $white;
     font-size: rem(14);
     width: 100%;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
+
+    @include breakpoint('lg') {
+      padding-top: 10px;
+    }
 
     .container {
       display: flex;
@@ -120,6 +158,13 @@ footer {
           flex-direction: row;
         }
 
+        li {
+          margin-bottom: 10px;
+          @include breakpoint('lg') {
+            margin-bottom: 0;
+          }
+        }
+
         li:not(:first-child) {
           @include breakpoint('lg') {
             margin-left: 10px;
@@ -142,10 +187,25 @@ footer {
     text-decoration: none;
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
+
+    @include breakpoint('lg') {
+      margin-bottom: 0;
+    }
 
     &:hover {
       text-decoration: underline;
       color: $casal;
+    }
+  }
+
+  ::v-deep(ul.nuxt-link-list) {
+    margin-right: -20px;
+    margin-bottom: 20px;
+
+    @include breakpoint('lg') {
+      margin-right: 20px;
+      margin-bottom: 0;
     }
   }
 }

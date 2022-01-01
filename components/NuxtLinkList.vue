@@ -16,6 +16,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+// TODO: move the styling to a mixin so we can use it here or in other places
 ul.nuxt-link-list {
   display: block;
   //   column-count: 6;
