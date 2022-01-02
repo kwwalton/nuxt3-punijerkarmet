@@ -32,16 +32,12 @@
 import categoriesList from '~/constants/mega-menu-lists'
 
 const categories = reactive(categoriesList)
-const categoryVisibility = reactive({
-  vegetables: false,
-  fruits: false,
-  flowers: false,
-  herbs: false,
-  farmSeed: false,
-  toolsAndSupplies: false,
-  featured: false,
-  sale: false
-})
+const categoryVisibility = reactive(
+  categories.reduce((acc, cur) => {
+    acc[cur.referenceName] = false
+    return acc
+  }, {})
+)
 
 const emit = defineEmits(['navigated'])
 const handleClick = () => {
