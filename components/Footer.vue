@@ -20,7 +20,7 @@
     <div class="footer-lower">
       <div class="container">
         <div class="footer-lower__left">
-          Not Coprighted &copy; 2021 Nuxt 3 and Composition API practice.
+          Not Copyrighted &copy; 2021 Nuxt 3 and Composition API practice.
         </div>
         <div class="footer-lower__right">
           <ul class="footer-lower__right-list">
