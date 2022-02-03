@@ -4,6 +4,8 @@
       <h1>{{ resData.category.name }}</h1>
       <img :src="resData.category.image" />
       <p>{{ resData.category.description }}</p>
+
+      <CategoryTileGrid :categories="resData.category.subcategories" />
       <ul v-if="resData.category?.subcategories?.length">
         <li
           v-for="(subcategory, index) in resData.category.subcategories"
